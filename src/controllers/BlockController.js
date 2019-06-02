@@ -20,10 +20,12 @@ class BlockController {
 			payload: req.body.payload,
 			previousHash: lastBlock[0].hash,
 		}).then(response => {
-			console.log(response.data + ' / ' + hash);
+			console.log(`
+			|${response.data} - hash recebido
+			|${hash} - hash gerado`);
 
 			if (response.data === hash) {
-				console.log('bateu kkk');
+				console.log('Transação validada');
 			}
 		});
 
