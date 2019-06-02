@@ -1,18 +1,23 @@
 const express = require('express');
-const cors = require('cors');
+const app = express();
+
 const { connection } = require('./helpers/dbConnect');
 
-const server = express();
+const cors = require('cors');
+
+//const server = require("http").Server(app);
+//const io = require("socket.io")(server);
 
 connection();
 
-server.listen(process.env.PORT || 3000, () => {
-	console.log('Server is running');
+app.get('/', function(req, res) {
+	res.send('Bem vindo ao PrintShop API!');
 });
 
-server.get('/', (req, res) => {
-	res.send('Welcome to the motherfucking jesus API');
-});
+app.use(cors());
+app.use(express.json());
+app.use(require('./routes'));
 
-server.use(cors);
-server.use(express.json());
+app.listen(process.env.PORT || 3000, () => {
+	console.log('Server start on port 3000');
+});
