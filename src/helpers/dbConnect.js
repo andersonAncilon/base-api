@@ -1,19 +1,18 @@
-const mongoose = require('mongoose');
-
-const { userName } = require('../consts/config');
-const { password } = require('../consts/config');
+const mongoose = require("mongoose");
 
 module.exports = {
-	async connection() {
-		try {
-			await mongoose.connect(`mongodb://${userName}:${password}@ds231207.mlab.com:31207/urpay-hack-db`, {
-				useNewUrlParser: true,
-				useCreateIndex: true,
-			});
-			console.log('DB connection done!');
-		} catch (err) {
-			console.log('Fuck this god damn shit, something gone wrong!');
-			console.error(err);
-		}
-	},
+  async connection() {
+    try {
+      const cnct = await mongoose.connect(
+        `mongodb://prova:prova123@ds347298.mlab.com:47298/prova`,
+        {
+          useNewUrlParser: true,
+          useCreateIndex: true
+        }
+      );
+      console.log("Conexão com o DB bem sucedida!");
+    } catch (err) {
+      console.log("Conexão com o DB mal sucedida!", err);
+    }
+  }
 };
